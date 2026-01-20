@@ -8,6 +8,7 @@ class Game:
         pg.init()
         pg.display.set_caption('Ninja Game') 
         self.screen = pg.display.set_mode((640, 480)) 
+        self.display = pg.Surface((320, 240))
         self.clock = pg.time.Clock() 
         self.movement = [False, False]
         self.assets = {'player': load_image('entities/player.png')
@@ -16,9 +17,9 @@ class Game:
         
     def run(self): #metodo que inicia y ejecuta el programa
         while True: 
-            self.screen.fill((14, 219, 248))
+            self.display.fill((14, 219, 248))
             self.player.update((self.movement[1] - self.movement[0], 0))
-            self.player.render(self.screen)
+            self.player.render(self.display)
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()
@@ -33,7 +34,8 @@ class Game:
                         self.movement[0] = False
                     if event.key == pg.K_RIGHT:
                         self.movement[1] = False
-
+            
+            self.screen.blit(pg.transform.scale(self.display, self.screen.get_size()), (0, 0))
             pg.display.update() 
             self.clock.tick(60) 
 
