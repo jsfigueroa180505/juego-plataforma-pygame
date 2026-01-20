@@ -12,7 +12,7 @@ class Game:
         self.img_pos = [160, 260]
         self.movement = [False, False]
         self.collision_area = pg.Rect(50, 50, 300, 50)
-
+        
     def run(self): #metodo que inicia y ejecuta el programa
         while True: 
             self.screen.fill((14, 219, 248))
