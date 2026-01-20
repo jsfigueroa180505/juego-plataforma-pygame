@@ -1,6 +1,7 @@
 import pygame as pg
 import sys
 from scripts.entity import PhysicsEntity
+from scripts.utils import load_image
 
 class Game:
     def __init__(self): #Funcion de inicializacion
@@ -9,6 +10,8 @@ class Game:
         self.screen = pg.display.set_mode((640, 480)) 
         self.clock = pg.time.Clock() 
         self.movement = [False, False]
+        self.assets = {'player': load_image('entities/player.png')
+        }
         self.player = PhysicsEntity(self, 'player', (50, 50), (8, 15))
         
     def run(self): #metodo que inicia y ejecuta el programa
