@@ -1,5 +1,6 @@
 import pygame as pg
 import sys
+from scripts.entity import PhysicsEntity
 
 class Game:
     def __init__(self): #Funcion de inicializacion
