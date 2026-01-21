@@ -22,13 +22,23 @@ class Game:
         
         self.player = PhysicsEntity(self, 'player', (50, 50), (8, 15))
         self.tilemap = Tilemap(self, tile_size = 16)
-        
-    def run(self): #metodo que inicia y ejecuta el programa
+
+
+
+
+
+
+
+
+    def run(self):      
         while True: 
             self.display.fill((14, 219, 248))
+
             self.tilemap.render(self.display)
-            self.player.update((self.movement[1] - self.movement[0], 0))
+
+            self.player.update(self.tilemap, (self.movement[1] - self.movement[0], 0))
             self.player.render(self.display)
+
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()
