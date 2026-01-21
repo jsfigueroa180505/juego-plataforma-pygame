@@ -1,7 +1,8 @@
 import pygame as pg
 import sys
-from scripts.entity import PhysicsEntity
-from scripts.utils import load_image
+from scripts.entites import PhysicsEntity
+from scripts.utils import load_image, load_images
+from scripts.tilemap import Tilemap
 
 class Game:
     def __init__(self): #Funcion de inicializacion
@@ -11,13 +12,21 @@ class Game:
         self.display = pg.Surface((320, 240))
         self.clock = pg.time.Clock() 
         self.movement = [False, False]
-        self.assets = {'player': load_image('entities/player.png')
+        self.assets = {
+            'decor': load_images('tiles/decor'),
+            'grass': load_images('tiles/grass'),
+            'large_decore': load_images('tiles/large_decor'),
+            'stone': load_images('tiles/stone'),
+            'player': load_image('entities/player.png')
         }
+        
         self.player = PhysicsEntity(self, 'player', (50, 50), (8, 15))
+        self.tilemap = Tilemap(self, tile_size = 16)
         
     def run(self): #metodo que inicia y ejecuta el programa
         while True: 
             self.display.fill((14, 219, 248))
+            self.tilemap.render(self.display)
             self.player.update((self.movement[1] - self.movement[0], 0))
             self.player.render(self.display)
             for event in pg.event.get():
