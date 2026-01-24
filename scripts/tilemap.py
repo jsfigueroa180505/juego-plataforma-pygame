@@ -4,9 +4,9 @@ import pygame as pg
 
 
 class Tilemap:
-    def __init__(self, game, tile_size = 16):
-        self.game  = game
-        self.tile_zise = tile_size
+    def __init__(self, game, tile_size=16):
+        self.game = game
+        self.tile_size = tile_size  
         self.tilemap = {}
         self.offgrid_tiles = []
 
@@ -16,18 +16,18 @@ class Tilemap:
 
     def tile_around(self, pos):
         tiles = []
-        tile_loc = (int(pos[0] // self.tile_zise), int(pos[1] // self.tile_zise))
+        tile_loc = (int(pos[0] // self.tile_size), int(pos[1] // self.tile_size))
         for offset in NEIGHBOR_OFFSET:
             check_loc = str(tile_loc[0] + offset[0]) + ';' + str(tile_loc[1] + offset[1])
             if check_loc in self.tilemap:
-                tiles.append(self.tile_map[check_loc])
+                tiles.append(self.tilemap[check_loc])  
         return tiles
     
     def physics_rects_around(self, pos):
         rects = []
         for tile in self.tile_around(pos):
             if tile['type'] in PHYSICS_TILES:
-                rects.append(pg.Rect(tile['pos'][0] * self.tile_size, tile['pos'][1] * self.tile_size, self.tile_size, self.tile_size ))
+                rects.append(pg.Rect(tile['pos'][0] * self.tile_size, tile['pos'][1] * self.tile_size, self.tile_size, self.tile_size))
         return rects
     
     def render(self, surf):
@@ -36,13 +36,4 @@ class Tilemap:
 
         for loc in self.tilemap:
             tile = self.tilemap[loc]
-            surf.blit(self.game.assets[tile['type']][tile['variant']], (tile['pos'][0] * self.tile_zise['pos'][1] * self.tile_zise))
-
- 
-        
-
-
-
-
-
- 
+            surf.blit(self.game.assets[tile['type']][tile['variant']], (tile['pos'][0] * self.tile_size,  tile['pos'][1] * self.tile_size)) 
