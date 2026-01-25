@@ -1,10 +1,11 @@
 import pygame as pg
+
 import sys
+
 from scripts.entites import PhysicsEntity
 from scripts.utils import load_image, load_images
 from scripts.tilemap import Tilemap
-
-
+from scripts.clouds import Clouds
 
 class Game:
     def __init__(self): 
@@ -25,7 +26,10 @@ class Game:
             'stone': load_images('tiles/stone'),
             'player': load_image('entities/player.png'),
             'background': load_image('background.png'),
+            'clouds': load_images('clouds')
         }
+
+        self.clouds = Clouds(self.assets['clouds'], count = 16)
         
         self.player = PhysicsEntity(self, 'player', (50, 50), (8, 15))
         
@@ -40,6 +44,9 @@ class Game:
             self.scroll[0] += (self.player.rect().centerx - self.display.get_width() / 2 - self.scroll[0]) / 30
             self.scroll[1] += (self.player.rect().centery - self.display.get_height() / 2 - self.scroll[1]) / 30
             render_scroll = (int(self.scroll[0]), int(self.scroll[1]))
+
+            self.clouds.update()
+            self.clouds.render(self.display, offset = render_scroll)
 
             self.tilemap.render(self.display, offset = render_scroll)
 
