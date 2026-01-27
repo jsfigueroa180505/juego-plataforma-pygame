@@ -2,12 +2,12 @@ import pygame as pg
 
 import sys
 
-from scripts.entites import PhysicsEntity, Player
-from scripts.utils import load_image, load_images, Animation
+from scripts.utils import load_images
 from scripts.tilemap import Tilemap
-from scripts.clouds import Clouds
 
-class Game:
+
+
+class Editor:
     def __init__(self): 
         pg.init()
 
@@ -79,4 +79,4 @@ class Game:
             pg.display.update() 
             self.clock.tick(60) 
 
-Game().run() 
+Editor().run() 

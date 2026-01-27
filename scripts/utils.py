@@ -35,4 +35,4 @@ class Animation:
                 self.done = True
                 
     def img(self):
-        return self.images[int(self.fraame / self.img_duration)]
+        return self.images[int(self.frame / self.img_duration)]
