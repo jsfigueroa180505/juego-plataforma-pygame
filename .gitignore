@@ -1,1 +1,3 @@
-* scripts/_pycache_
+#ignorar las carpetas
+
+scripts/__pycache__/
