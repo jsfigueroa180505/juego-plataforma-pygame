@@ -121,6 +121,8 @@ class Editor:
                         self.movement[3] = True  
                     if event.key == pg.K_g:
                         self.ongrid = not self.ongrid
+                    if event.key == pg.K_t:
+                        self.tilemap.autotile()
                     if event.key == pg.K_o:
                         self.tilemap.save('map.json')
                     if event.key == pg.K_LSHIFT:
