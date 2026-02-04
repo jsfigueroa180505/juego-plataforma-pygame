@@ -41,6 +41,10 @@ class Game:
         self.tilemap = Tilemap(self, tile_size = 16)
         self.tilemap.load('map.json')
 
+        self.leaf_spawners = []
+        for tree in self.tilemap.extract([('large_decor', 2)], keep = True):
+            self.leaf_spawners.append(pg.Rect(4 + tree['pos'][0], 4 + tree['pos'][1], 23, 13))
+
         self.scroll = [0, 0]
         
     def run(self):      
