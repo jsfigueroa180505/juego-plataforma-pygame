@@ -42,14 +42,18 @@ class Game:
             'gun': load_image('gun.png'),
             'projectile': load_image('projectile.png'),
         }
-        
+
         self.clouds = Clouds(self.assets['clouds'], count=16)
         
         self.player = Player(self, (50, 50), (8, 15))
         
         self.tilemap = Tilemap(self, tile_size=16)
-        self.tilemap.load('map.json')
+
+        self.load_level(0)
         
+    def load_level(self, map_id):
+        self.tilemap.load('data/maps/' + str(map_id) + '.json')
+
         self.leaf_spawners = []
         for tree in self.tilemap.extract([('large_decor', 2)], keep=True):
             self.leaf_spawners.append(pygame.Rect(4 + tree['pos'][0], 4 + tree['pos'][1], 23, 13))
@@ -66,6 +70,7 @@ class Game:
         
         self.scroll = [0, 0]
         
+
     def run(self):
         while True:
             self.display.blit(self.assets['background'], (0, 0))
